@@ -1,4 +1,4 @@
-package com.sergio.play_movie;
+package com.sergio.play_movie.domain.service;
 
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;

@@ -1,5 +1,6 @@
-package com.sergio.play_movie;
+package com.sergio.play_movie.web.controller;
 
+import com.sergio.play_movie.domain.service.PlayAiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class HelloController {
         this.aiService = aiService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public String hello(){
         return this.aiService.generateGreeting(platform);
     }
