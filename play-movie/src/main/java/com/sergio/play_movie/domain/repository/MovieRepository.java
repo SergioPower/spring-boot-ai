@@ -7,4 +7,5 @@ import com.sergio.play_movie.persistence.entity.MovieDto;
 public interface MovieRepository {
 	List<MovieDto> getAll();
 
+	MovieDto getById(long id);
 }

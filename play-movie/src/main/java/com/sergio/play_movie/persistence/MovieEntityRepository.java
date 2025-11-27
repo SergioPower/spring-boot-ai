@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.sergio.play_movie.domain.repository.MovieRepository;
 import com.sergio.play_movie.persistence.crud.CrudMovieEntity;
 import com.sergio.play_movie.persistence.entity.MovieDto;
+import com.sergio.play_movie.persistence.entity.MovieEntity;
 import com.sergio.play_movie.persistence.mapper.MovieMapper;
 
 @Repository
@@ -23,6 +24,12 @@ public class MovieEntityRepository implements MovieRepository {
 	@Override
 	public List<MovieDto> getAll() {
 		return this.movieMapper.toDto(this.crudMovieEntity.findAll());
+	}
+
+	@Override
+	public MovieDto getById(long id) {
+		MovieEntity movieEntity = this.crudMovieEntity.findById(id).orElse(null);
+		return this.movieMapper.toDto(movieEntity);
 	}
 
 }

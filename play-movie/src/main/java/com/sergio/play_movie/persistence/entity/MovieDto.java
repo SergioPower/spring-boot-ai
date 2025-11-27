@@ -10,6 +10,6 @@ public record MovieDto(
 		Genre genre,
 		LocalDate realeaseDate,
 		Double rating,
-		Boolean status) {
+		Boolean state) {
 
 }

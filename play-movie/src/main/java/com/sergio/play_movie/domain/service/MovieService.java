@@ -20,4 +20,7 @@ public class MovieService {
 		return this.movieRepository.getAll();
 	}
 
+	public MovieDto getById(long id) {
+		return this.movieRepository.getById(id);
+	}
 }
