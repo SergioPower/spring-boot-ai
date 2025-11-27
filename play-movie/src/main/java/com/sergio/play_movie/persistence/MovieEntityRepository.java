@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.sergio.play_movie.domain.dto.MovieDto;
+import com.sergio.play_movie.domain.dto.UpdateMovieDto;
 import com.sergio.play_movie.domain.repository.MovieRepository;
 import com.sergio.play_movie.persistence.crud.CrudMovieEntity;
-import com.sergio.play_movie.persistence.entity.MovieDto;
 import com.sergio.play_movie.persistence.entity.MovieEntity;
 import com.sergio.play_movie.persistence.mapper.MovieMapper;
 
@@ -35,6 +36,17 @@ public class MovieEntityRepository implements MovieRepository {
 	@Override
 	public MovieDto save(MovieDto movieDto) {
 		MovieEntity movieEntity = this.movieMapper.toEntity(movieDto);
+		return this.movieMapper.toDto(this.crudMovieEntity.save(movieEntity));
+	}
+
+	@Override
+	public MovieDto update(long id, UpdateMovieDto updateMovieDto) {
+		MovieEntity movieEntity = this.crudMovieEntity.findById(id).orElse(null);
+		if (movieEntity == null)
+			return null;
+
+		this.movieMapper.updateEntityFromDto(updateMovieDto, movieEntity);
+
 		return this.movieMapper.toDto(this.crudMovieEntity.save(movieEntity));
 	}
 

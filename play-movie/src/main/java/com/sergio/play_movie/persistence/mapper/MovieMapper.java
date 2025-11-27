@@ -5,8 +5,10 @@ import java.util.List;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
-import com.sergio.play_movie.persistence.entity.MovieDto;
+import com.sergio.play_movie.domain.dto.MovieDto;
+import com.sergio.play_movie.domain.dto.UpdateMovieDto;
 import com.sergio.play_movie.persistence.entity.MovieEntity;
 
 @Mapper(componentModel = "spring", uses = { GenreMapper.class, StateMapper.class })
@@ -25,4 +27,9 @@ public interface MovieMapper {
 	@Mapping(source = "genre", target = "genero", qualifiedByName = "genreToString")
 	@Mapping(source = "state", target = "estado", qualifiedByName = "booleanToString")
 	MovieEntity toEntity(MovieDto dto);
+
+	@Mapping(target = "titulo", source = "title")
+	@Mapping(target = "fechaEstreno", source = "realeaseDate")
+	@Mapping(target = "clasificacion", source = "rating")
+	void updateEntityFromDto(UpdateMovieDto updateMovieDto, @MappingTarget MovieEntity movieEntity);
 }

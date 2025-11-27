@@ -1,4 +1,4 @@
-package com.sergio.play_movie.persistence.entity;
+package com.sergio.play_movie.domain.dto;
 
 import java.time.LocalDate;
 
