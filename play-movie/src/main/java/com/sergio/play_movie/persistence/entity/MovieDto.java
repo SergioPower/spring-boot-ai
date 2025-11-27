@@ -2,10 +2,12 @@ package com.sergio.play_movie.persistence.entity;
 
 import java.time.LocalDate;
 
+import com.sergio.play_movie.domain.Genre;
+
 public record MovieDto(
 		String title,
 		Integer duration,
-		String genre,
+		Genre genre,
 		LocalDate realeaseDate,
 		Double rating) {
 
