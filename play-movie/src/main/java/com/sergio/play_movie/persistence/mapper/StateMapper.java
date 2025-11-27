@@ -18,7 +18,7 @@ public class StateMapper {
 
 	@Named("booleanToString")
 	public static String booleanToString(Boolean state) {
-		return state == null ? "N" : (state ? "D" : "N");
+		return state == null ? "N" : state ? "D" : "N";
 	}
 
 }

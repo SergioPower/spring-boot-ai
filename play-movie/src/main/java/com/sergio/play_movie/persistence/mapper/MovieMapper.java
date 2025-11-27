@@ -2,6 +2,7 @@ package com.sergio.play_movie.persistence.mapper;
 
 import java.util.List;
 
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -19,4 +20,9 @@ public interface MovieMapper {
 	MovieDto toDto(MovieEntity entity);
 
 	List<MovieDto> toDto(Iterable<MovieEntity> entities);
+
+	@InheritInverseConfiguration
+	@Mapping(source = "genre", target = "genero", qualifiedByName = "genreToString")
+	@Mapping(source = "state", target = "estado", qualifiedByName = "booleanToString")
+	MovieEntity toEntity(MovieDto dto);
 }

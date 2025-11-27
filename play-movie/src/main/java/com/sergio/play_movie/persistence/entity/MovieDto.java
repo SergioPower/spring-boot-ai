@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import com.sergio.play_movie.domain.Genre;
 
 public record MovieDto(
+		Long id,
 		String title,
 		Integer duration,
 		Genre genre,
