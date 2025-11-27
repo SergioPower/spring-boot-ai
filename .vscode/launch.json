@@ -1,0 +1,14 @@
+{
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Spring Boot-PlayMovieApplication<play-movie>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.sergio.play_movie.PlayMovieApplication",
+			"projectName": "play-movie",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env"
+		}
+	]
+}
