@@ -2,8 +2,9 @@ package com.sergio.play_movie.web.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sergio.play_movie.persistence.crud.CrudMovieEntity;
-import com.sergio.play_movie.persistence.entity.MovieEntity;
+import com.sergio.play_movie.domain.service.MovieService;
+
+import com.sergio.play_movie.persistence.entity.MovieDto;
 
 import java.util.List;
 
@@ -12,15 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 public class MovieController {
 
-	private final CrudMovieEntity crudMovieEntity;
+	private final MovieService movieService;
 
-	public MovieController(CrudMovieEntity crudMovieEntity) {
-		this.crudMovieEntity = crudMovieEntity;
+	public MovieController(MovieService movieService) {
+		this.movieService = movieService;
 	}
 
 	@GetMapping("/movies")
-	public List<MovieEntity> getAll() {
-		return (List<MovieEntity>) this.crudMovieEntity.findAll();
+	public List<MovieDto> getAll() {
+		return movieService.getAll();
 	}
 
 }
