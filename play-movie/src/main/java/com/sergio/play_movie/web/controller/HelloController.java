@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    private final String platform;
+	private final String platform;
 
-    private final PlayAiService aiService;
+	private final PlayAiService aiService;
 
-    public HelloController(@Value("${spring.application.name}") String platform, PlayAiService aiService) {
-        this.platform = platform;
-        this.aiService = aiService;
-    }
+	public HelloController(@Value("${spring.application.name}") String platform, PlayAiService aiService) {
+		this.platform = platform;
+		this.aiService = aiService;
+	}
 
-    @GetMapping("/hello")
-    public String hello(){
-        return this.aiService.generateGreeting(platform);
-    }
+	@GetMapping("/hello")
+	public String hello() {
+		return this.aiService.generateGreeting(platform);
+	}
 }

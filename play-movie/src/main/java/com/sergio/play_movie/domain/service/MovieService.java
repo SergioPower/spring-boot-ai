@@ -8,6 +8,8 @@ import com.sergio.play_movie.domain.dto.MovieDto;
 import com.sergio.play_movie.domain.dto.UpdateMovieDto;
 import com.sergio.play_movie.domain.repository.MovieRepository;
 
+import dev.langchain4j.agent.tool.Tool;
+
 @Service
 public class MovieService {
 
@@ -17,6 +19,7 @@ public class MovieService {
 		this.movieRepository = movieRepository;
 	}
 
+	@Tool("Busca todas las películas que existan dentro de la plataforma.")
 	public List<MovieDto> getAll() {
 		return this.movieRepository.getAll();
 	}

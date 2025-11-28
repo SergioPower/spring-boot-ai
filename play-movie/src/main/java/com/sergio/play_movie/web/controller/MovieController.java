@@ -3,8 +3,10 @@ package com.sergio.play_movie.web.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sergio.play_movie.domain.dto.MovieDto;
+import com.sergio.play_movie.domain.dto.SuggestRequestDto;
 import com.sergio.play_movie.domain.dto.UpdateMovieDto;
 import com.sergio.play_movie.domain.service.MovieService;
+import com.sergio.play_movie.domain.service.PlayAiService;
 
 import java.util.List;
 
@@ -24,8 +26,11 @@ public class MovieController {
 
 	private final MovieService movieService;
 
-	public MovieController(MovieService movieService) {
+	private final PlayAiService aiService;
+
+	public MovieController(MovieService movieService, PlayAiService aiService) {
 		this.movieService = movieService;
+		this.aiService = aiService;
 	}
 
 	@GetMapping
@@ -41,6 +46,11 @@ public class MovieController {
 		}
 
 		return ResponseEntity.ok(movieDto);
+	}
+
+	@PostMapping("/suggest")
+	public ResponseEntity<String> generateMoviesSuggestion(@RequestBody SuggestRequestDto suggestRequestDto) {
+		return ResponseEntity.ok(this.aiService.generateMoviesSuggestion(suggestRequestDto.userPreferences()));
 	}
 
 	@PostMapping
