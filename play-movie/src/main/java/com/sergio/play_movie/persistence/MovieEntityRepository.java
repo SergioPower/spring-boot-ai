@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.sergio.play_movie.domain.dto.MovieDto;
 import com.sergio.play_movie.domain.dto.UpdateMovieDto;
 import com.sergio.play_movie.domain.exception.MovieAlreadyExistsException;
+import com.sergio.play_movie.domain.exception.MovieNotFoundException;
 import com.sergio.play_movie.domain.repository.MovieRepository;
 import com.sergio.play_movie.persistence.crud.CrudMovieEntity;
 import com.sergio.play_movie.persistence.entity.MovieEntity;
@@ -47,9 +48,9 @@ public class MovieEntityRepository implements MovieRepository {
 	@Override
 	public MovieDto update(long id, UpdateMovieDto updateMovieDto) {
 		MovieEntity movieEntity = this.crudMovieEntity.findById(id).orElse(null);
-		if (movieEntity == null)
-			return null;
-
+		if (movieEntity == null) {
+			throw new MovieNotFoundException();
+		}
 		this.movieMapper.updateEntityFromDto(updateMovieDto, movieEntity);
 
 		return this.movieMapper.toDto(this.crudMovieEntity.save(movieEntity));
@@ -57,6 +58,10 @@ public class MovieEntityRepository implements MovieRepository {
 
 	@Override
 	public void delete(long id) {
+		MovieEntity movieEntity = this.crudMovieEntity.findById(id).orElse(null);
+		if (movieEntity == null) {
+			throw new MovieNotFoundException();
+		}
 		this.crudMovieEntity.deleteById(id);
 	}
 
