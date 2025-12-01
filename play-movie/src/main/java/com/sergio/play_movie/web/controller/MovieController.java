@@ -8,6 +8,8 @@ import com.sergio.play_movie.domain.dto.UpdateMovieDto;
 import com.sergio.play_movie.domain.service.MovieService;
 import com.sergio.play_movie.domain.service.PlayAiService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -59,7 +61,7 @@ public class MovieController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<MovieDto> update(@PathVariable long id, @RequestBody UpdateMovieDto updateMovieDto) {
+	public ResponseEntity<MovieDto> update(@PathVariable long id, @RequestBody @Valid UpdateMovieDto updateMovieDto) {
 		return ResponseEntity.ok(this.movieService.update(id, updateMovieDto));
 	}
 
